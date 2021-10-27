@@ -21,9 +21,7 @@
 </template>
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue'
-import { RouteRecordRaw } from 'vue-router'
-type RouterConfig = RouteRecordRaw & { alwaysShow?: boolean }
-
+import { RouterConfig } from "@/router/routes"
 export default defineComponent({
     name: 'SideBarItem',
     props: {

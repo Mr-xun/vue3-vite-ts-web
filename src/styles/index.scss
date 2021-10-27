@@ -56,6 +56,11 @@ em {
     font-style: normal;
 }
 
+ul,
+li {
+    list-style: none
+}
+
 a:focus,
 a:active {
     outline: none;
@@ -182,6 +187,7 @@ div:focus {
     border-radius: 5px;
 
 }
+
 .table-operation {
     margin-right: 10px;
     font-size: 1rem;
@@ -209,6 +215,7 @@ div:focus {
     height: 38px;
     line-height: 38px;
 }
+
 .el-table thead {
     color: #606266;
 }

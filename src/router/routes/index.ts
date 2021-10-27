@@ -1,6 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import Layout from '@/layout/Index.vue'
-type RouterConfig = RouteRecordRaw & { alwaysShow?: boolean }
+export type RouterConfig = RouteRecordRaw & { alwaysShow?: boolean }
 /*
   meta: {
     title: 'title'               the name showed in subMenu and breadcrumb (recommend set)

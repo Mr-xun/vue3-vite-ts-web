@@ -20,7 +20,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store/index'
-import Toggle from "@/components/toggle/Index.vue"
+import Toggle from "@/components/Toggle/index.vue"
 export default defineComponent({
     components: { Toggle },
     setup() {
