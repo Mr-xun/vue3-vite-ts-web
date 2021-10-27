@@ -1,0 +1,289 @@
+@import "./_transition.scss";
+@import "./_mixin.scss";
+@import "./element-ui";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Chinese Quote, -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+
+::-webkit-scrollbar-track {
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1px;
+    background: rgba(0, 0, 0, .2);
+}
+
+label {
+    font-weight: 600;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#app {
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.padding-content {
+    padding: 4px 0;
+}
+
+em {
+    font-style: normal;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+div:focus {
+    outline: none;
+}
+
+.fr {
+    float: right;
+}
+
+.fl {
+    float: left;
+}
+
+.pr-5 {
+    padding-right: 5px;
+}
+
+.pl-5 {
+    padding-left: 5px;
+}
+
+.block {
+    display: block;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.inlineBlock {
+    display: block;
+}
+
+.clearfix {
+    &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+}
+
+//main-container全局样式
+.app-container {
+    padding: 0 0 20px;
+    margin: 10px;
+    // background: #fff;
+}
+
+.components-container {
+    margin: 30px 50px;
+    position: relative;
+}
+
+.pagination-container {
+    margin-top: 30px;
+}
+
+.text-center {
+    text-align: center
+}
+
+.text-left {
+    text-align: left
+}
+
+.text-right {
+    text-align: right
+}
+
+.link-type,
+.link-type:focus {
+    color: #337ab7;
+    cursor: pointer;
+
+    &:hover {
+        color: rgb(32, 160, 255);
+    }
+}
+
+.filter-container {
+    padding: 20px 20px 10px;
+    margin-bottom: 5px;
+    background: #fff;
+    border-radius: 5px;
+
+    .filter-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 10px;
+    }
+
+    .search-item {
+        margin-right: 10px;
+        width: 170px;
+    }
+
+    .date-range-item {
+        width: 240px;
+    }
+
+    .el-form-item {
+        margin-bottom: 0 !important;
+    }
+}
+
+.center-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+
+}
+.table-operation {
+    margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.el-button:not(.is-circle, .is-round),
+.el-input__inner {
+    border-radius: 3px !important;
+}
+
+.el-input {
+    font-size: .85rem !important;
+
+}
+
+.el-button {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+}
+
+
+.el-input__inner {
+    height: 38px;
+    line-height: 38px;
+}
+.el-table thead {
+    color: #606266;
+}
+
+// flex class
+.flex-left {
+    @include display_flex;
+}
+
+// 全部居中
+.flex-all-center {
+    @include display_flex;
+    @include justify_content_center;
+    @include align_items_center;
+}
+
+// 垂直居中
+.flex-cross-center {
+    @include display_flex;
+    @include align_items_center;
+}
+
+// 左右靠边换行平均分布
+.flex-between-wrap {
+    @include display_flex;
+    @include flex_wrap;
+    @include justify_content_between;
+}
+
+// 左右靠边平均分布
+.flex-between {
+    @include display_flex;
+    @include justify_content_between;
+}
+
+// 左右靠边平均分布并且纵向剧中
+.flex-between-center {
+    @include display_flex;
+    @include justify_content_between;
+    @include align_items_center;
+}
+
+// 向后分布
+.flex-end {
+    @include display_flex;
+    @include justify_content_end;
+}
+
+// flex换行
+.flex-wrap {
+    @include flex_wrap;
+}
+
+.flex1 {
+    @include flex1;
+}
+
+/*超出省略*/
+.fellip {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.fellip2 {
+    line-height: 1.5em;
+    height: 3em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -moz-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    word-wrap: normal;
+    word-break: break-all;
+}

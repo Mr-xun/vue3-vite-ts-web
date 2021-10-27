@@ -1,0 +1,65 @@
+<template>
+    <template
+        v-if="onlyOneShowChild(route.children, route) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !route.alwaysShow"
+    >
+        <el-menu-item :index="route.path">
+            <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
+            <template #title>{{ route.meta?.title }}</template>
+        </el-menu-item>
+    </template>
+    <el-sub-menu v-else :index="route.path" popper-append-to-body>
+        <template #title>
+            <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
+            <span>{{ route.meta?.title }}</span>
+        </template>
+        <sidebar-item
+            v-for="(child,index) in route.children"
+            :key="child.path + index"
+            :route="child"
+        />
+    </el-sub-menu>
+</template>
+<script lang="ts">
+import { defineComponent, PropType, ref } from 'vue'
+import { RouteRecordRaw } from 'vue-router'
+type RouterConfig = RouteRecordRaw & { alwaysShow?: boolean }
+
+export default defineComponent({
+    name: 'SideBarItem',
+    props: {
+        route: {
+            type: Object as PropType<RouterConfig>,
+            default: () => {
+                return {}
+            }
+        },
+    },
+    setup() {
+        let onlyOneChild = ref<any>(null)
+        //只有一个孩子时展示
+        const onlyOneShowChild = (children: Array<RouteRecordRaw> = [], parent: any) => {
+            let showChildren = children.filter(item => {
+                if (item.meta?.hidden) {
+                    return false
+                } else {
+                    // Temp set(will be used if only has one showing child)
+                    onlyOneChild.value = item
+                    return true
+                }
+            })
+            // 当只有一个子路由时，将默认展示其子路由
+            if (showChildren.length === 1) {
+                return true
+            }
+
+            // 如果没有子路由则展示其父路由
+            if (showChildren.length === 0) {
+                onlyOneChild.value = { ...parent, path: '', noShowingChildren: true }
+                return true
+            }
+            return false
+        }
+        return { onlyOneChild, onlyOneShowChild }
+    }
+})
+</script>

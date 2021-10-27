@@ -1,0 +1,35 @@
+{
+  "name": "vue-vite-ts-study",
+  "author": "Mr-xun",
+  "version": "0.0.0",
+  "description": "Vue3+Vite+TypeScript+ElementPlus",
+  "keywords": [
+    "vue3",
+    "vite",
+    "typescript",
+    "element-plus",
+    "vuex4",
+    "vue-router4"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons": "^0.0.11",
+    "element-plus": "^1.1.0-beta.24",
+    "unplugin-vue-components": "^0.16.0",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.4",
+    "@vitejs/plugin-vue": "^1.9.3",
+    "sass": "^1.43.3",
+    "typescript": "^4.4.3",
+    "vite": "^2.6.4",
+    "vue-tsc": "^0.3.0"
+  }
+}
