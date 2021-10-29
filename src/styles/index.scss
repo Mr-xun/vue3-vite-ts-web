@@ -1,6 +1,8 @@
 @import "./_transition.scss";
 @import "./_mixin.scss";
 @import "./element-ui";
+@import 'element-plus/dist/index.css';
+@import "normalize.css";
 
 * {
     padding: 0;
