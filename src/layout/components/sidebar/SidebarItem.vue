@@ -35,12 +35,11 @@ export default defineComponent({
     setup() {
         let onlyOneChild = ref<any>(null)
         //只有一个孩子时展示
-        const onlyOneShowChild = (children: Array<RouteRecordRaw> = [], parent: any) => {
+        const onlyOneShowChild = (children: Array<RouterConfig> = [], parent: any) => {
             let showChildren = children.filter(item => {
                 if (item.meta?.hidden) {
                     return false
                 } else {
-                    // Temp set(will be used if only has one showing child)
                     onlyOneChild.value = item
                     return true
                 }

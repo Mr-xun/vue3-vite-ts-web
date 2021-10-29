@@ -1,12 +1,12 @@
 <template>
     <div>
-        Home
-        <el-button type="primary" @click="addCount"></el-button>
-        <div v-for="item in 200" :key="item">home+{{ item + 1 }}</div>
+        
+        <el-button type="primary" @click="addCount">addCount</el-button>
+        <div v-for="count in num" :key="count">count+{{ count  }}</div>
     </div>
 </template>
 <script lang ="ts">
-import { defineComponent } from 'vue'
+import { defineComponent,computed } from 'vue'
 import { useStore } from 'vuex'
 import { key } from '@/store/index'
 
@@ -16,7 +16,9 @@ export default defineComponent({
         const addCount = () => {
             store.commit('increment')
         }
+        const num = computed(()=>store.state.count)
         return {
+            num,
             addCount
         }
     }
