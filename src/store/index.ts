@@ -3,6 +3,7 @@ import { createStore, Store, useStore as baseUseStore } from 'vuex'
 import IRootState, { IAllState } from './interface'
 import settingModule from './modules/setting'
 import pageTagsModule from './modules/pageTags'
+import userModule from './modules/user'
 
 export const store = createStore<IRootState>({
     state: {
@@ -16,7 +17,8 @@ export const store = createStore<IRootState>({
     },
     modules: {
         setting: settingModule,
-        pageTags: pageTagsModule
+        pageTags: pageTagsModule,
+        user:userModule
     }
 })
 

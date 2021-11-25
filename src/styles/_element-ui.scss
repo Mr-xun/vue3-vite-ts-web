@@ -79,20 +79,60 @@
 .el-range-editor.el-input__inner {
   display: inline-flex !important;
 }
-.el-date-editor .el-range-separator{
+
+.el-date-editor .el-range-separator {
   box-sizing: content-box !important;
 }
+
 // 调整默认form表单下间距
-.el-form-item{
-  margin-bottom: 12px !important;
-  .el-form-item__error{
+.el-form-item {
+
+  // margin-bottom: 12px !important;
+  .el-form-item__error {
     padding-top: 1px !important;
-    font-size:10px;
+    font-size: 10px;
   }
 }
-.el-table--striped .el-table__body tr.el-table__row--striped td{
+
+.el-table--striped .el-table__body tr.el-table__row--striped td {
   background: rgb(242, 246, 252);
 }
-.el-table__body tr.hover-row>td, .el-table__body tr.hover-row.current-row>td, .el-table__body tr.hover-row.el-table__row--striped>td, .el-table__body tr.hover-row.el-table__row--striped.current-row>td{
-  background:rgb(235, 238, 245);
+
+.el-table__body tr.hover-row>td,
+.el-table__body tr.hover-row.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped>td,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td {
+  background: rgb(235, 238, 245);
+}
+
+.el-table {
+
+  thead {
+    color: #606266;
+  }
+
+  .el-checkbox {
+    height: auto;
+  }
+}
+
+
+.el-button:not(.is-circle, .is-round),
+.el-input__inner {
+  border-radius: 3px !important;
+}
+
+.el-input {
+  font-size: .85rem !important;
+
+}
+
+.el-button {
+  margin-left: 0 !important;
+  margin-right: 10px !important;
+}
+
+.el-input__inner {
+  height: 38px;
+  line-height: 38px;
 }

@@ -26,7 +26,6 @@ const pageTagsModule: Module<IPageTagsState, IRootState> = {
             }
         },
         DEL_OTHER_VISITED_TAGS: (state, view: IVisitedTag) => {
-            console.log(state, view, 'DEL_OTHER_VISITED_TAGS')
             state.visitedTags = state.visitedTags.filter(v => v.path === view.path)
         },
         DEL_RIGHT_VISITED_TAGS: (state, view: IVisitedTag) => {

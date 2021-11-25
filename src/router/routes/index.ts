@@ -17,14 +17,14 @@ export type RouterConfig = RouteRecordRaw & { alwaysShow?: boolean }
 export const routes: Array<RouterConfig> = [
     {
         path: '/',
-        redirect: '/home1',
+        redirect: '/home',
         component: Layout,
         meta: {
             icon: 'el-icon-house',
             title: '首页'
         },
         children: [{
-            path: '/home1',
+            path: '/home',
             name: 'Home1',
             component: () => import('@/views/Home.vue'),
             meta: {
@@ -45,10 +45,10 @@ export const routes: Array<RouterConfig> = [
         name: 'Basic',
         component: Layout,
         redirect: '/basic/goods',
-        alwaysShow: true,
         meta: {
             icon: 'el-icon-files',
             title: '档案管理',
+            alwaysShow: true,
         },
         children: [{
             path: '/basic/goods',
@@ -144,6 +144,24 @@ export const routes: Array<RouterConfig> = [
         }]
     },
     {
+        path: '/user',
+        name: 'User',
+        component: Layout,
+        redirect: '/user/index',
+        meta: {
+            icon: 'el-icon-files',
+            title: '用户管理'
+        },
+        children: [{
+            path: '/user/index',
+            name: 'UserManage',
+            component: () => import('@/views/user/Index.vue'),
+            meta: {
+                title: '用户管理'
+            }
+        }]
+    },
+    {
         path: '/about',
         name: 'About',
         component: Layout,
@@ -161,4 +179,12 @@ export const routes: Array<RouterConfig> = [
             }
         }]
     },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/login/Index.vue'),
+        meta: {
+            hidden: true
+        }
+    }
 ]

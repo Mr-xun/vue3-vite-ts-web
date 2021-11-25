@@ -27,10 +27,6 @@ body {
     background: rgba(0, 0, 0, .2);
 }
 
-label {
-    font-weight: 600;
-}
-
 html {
     height: 100%;
     box-sizing: border-box;
@@ -119,12 +115,55 @@ div:focus {
     }
 }
 
-//main-container全局样式
-.app-container {
+//page-view全局样式
+.page-view {
     padding: 0 0 20px;
     margin: 10px;
     // background: #fff;
 }
+
+.filter-container {
+    padding: 20px 20px 10px;
+    margin-bottom: 5px;
+    background: #fff;
+    border-radius: 5px;
+
+    .filter-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 10px;
+    }
+
+    .search-item {
+        margin-right: 10px;
+        width: 170px;
+    }
+
+    .date-range-item {
+        width: 240px;
+    }
+
+    .el-form-item {
+        vertical-align: top;
+        margin-bottom: 0 !important;
+    }
+}
+
+.table-container {
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+
+    .table-operation {
+        margin-right: 10px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+}
+
+
 
 .components-container {
     margin: 30px 50px;
@@ -157,70 +196,8 @@ div:focus {
     }
 }
 
-.filter-container {
-    padding: 20px 20px 10px;
-    margin-bottom: 5px;
-    background: #fff;
-    border-radius: 5px;
-
-    .filter-item {
-        display: inline-block;
-        vertical-align: middle;
-        margin-bottom: 10px;
-    }
-
-    .search-item {
-        margin-right: 10px;
-        width: 170px;
-    }
-
-    .date-range-item {
-        width: 240px;
-    }
-
-    .el-form-item {
-        margin-bottom: 0 !important;
-    }
-}
-
-.center-container {
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-
-}
-
-.table-operation {
-    margin-right: 10px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-}
-
-.el-button:not(.is-circle, .is-round),
-.el-input__inner {
-    border-radius: 3px !important;
-}
-
-.el-input {
-    font-size: .85rem !important;
-
-}
-
-.el-button {
-    margin-left: 0 !important;
-    margin-right: 10px !important;
-}
 
 
-.el-input__inner {
-    height: 38px;
-    line-height: 38px;
-}
-
-.el-table thead {
-    color: #606266;
-}
 
 // flex class
 .flex-left {

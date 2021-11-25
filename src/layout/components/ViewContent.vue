@@ -11,9 +11,6 @@
 </template>
 <style lang="scss" scoped>
 .page-view {
-    margin: 10px;
-    background: #fff;
-    padding: 10px;
-    border-radius: 5px;
+   
 }
 </style>

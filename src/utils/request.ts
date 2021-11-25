@@ -1,16 +1,18 @@
-import axios, { AxiosRequestConfig, AxiosResponse,AxiosError } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
 import { ElNotification } from 'element-plus'
+import db from '@/utils/localstorage'
+import router from '@/router'
 
 const service = axios.create({
     withCredentials: true,
+    baseURL: 'http://127.0.0.1:3000',
     timeout: 3 * 1000,
     headers: {
         'Content-Type': 'application/json; charset=UTF-8'
     }
 })
 //请求错误异常处理
-const ErrorHandle = (error: any):Promise<AxiosError> => {
-    console.log(error,error.response, 'error')
+const ErrorHandle = (error: any): Promise<AxiosError> => {
     if (error.response) {
         let { status } = error.response
         let message = ''
@@ -19,7 +21,9 @@ const ErrorHandle = (error: any):Promise<AxiosError> => {
                 message = '请求错误(400)'
                 break
             case 401:
-                message = '未授权，请重新登录(401)'
+                message = '未授权，将重新登录(401)'
+                db.clear();
+                router.push('/login');
                 break
             case 403:
                 message = '拒绝访问(403)'
@@ -62,12 +66,25 @@ const ErrorHandle = (error: any):Promise<AxiosError> => {
 
 }
 service.interceptors.request.use((config: AxiosRequestConfig) => {
+    if (!config?.headers) {
+        throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
+    }
+    let token = db.get('TOEKN','');
+    config.headers['Authorization'] = `Bearer ${token}`;
     return config
 }, ErrorHandle)
 
 service.interceptors.response.use((response: AxiosResponse) => {
-    console.log(response, '222')
-    return response
+    const res = response.data;
+    if (res.code != 200) {
+        ElNotification({
+            message: res.msg || "Error",
+            type: "error",
+        });
+        return Promise.reject(new Error(res.msg || "Error"));
+    } else {
+        return response
+    }
 }, ErrorHandle)
 
 

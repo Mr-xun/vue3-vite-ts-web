@@ -26,6 +26,7 @@ export default defineComponent({
             if (route.meta.activeMenu) {
                 return route.meta.activeMenu
             }
+            console.log(route.path,'route.path')
             return route.path
         })
         const sidebarCollapse = computed(() => store.state.setting.sidebarCollapse)

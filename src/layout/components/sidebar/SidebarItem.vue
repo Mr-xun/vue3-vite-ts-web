@@ -1,23 +1,25 @@
 <template>
-    <template
-        v-if="onlyOneShowChild(route.children, route) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !route.alwaysShow"
-    >
-        <el-menu-item :index="route.path">
-            <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
-            <template #title>{{ route.meta?.title }}</template>
-        </el-menu-item>
-    </template>
-    <el-sub-menu v-else :index="route.path" popper-append-to-body>
-        <template #title>
-            <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
-            <span>{{ route.meta?.title }}</span>
+    <div v-if="!route.meta?.hidden" class="menu-wrapper">
+        <template
+            v-if="onlyOneShowChild(route.children, route) && (!onlyOneChild.children || onlyOneChild.noShowingChildren) && !route.meta?.alwaysShow"
+        >
+            <el-menu-item :index="route.path">
+                <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
+                <template #title>{{ route.meta?.title }}</template>
+            </el-menu-item>
         </template>
-        <sidebar-item
-            v-for="(child,index) in route.children"
-            :key="child.path + index"
-            :route="child"
-        />
-    </el-sub-menu>
+        <el-sub-menu v-else :index="route.path" popper-append-to-body>
+            <template #title>
+                <i v-if="route.meta?.icon" :class="route.meta.icon"></i>
+                <span>{{ route.meta?.title }}</span>
+            </template>
+            <sidebar-item
+                v-for="(child,index) in route.children"
+                :key="child.path + index"
+                :route="child"
+            />
+        </el-sub-menu>
+    </div>
 </template>
 <script lang="ts">
 import { defineComponent, PropType, ref } from 'vue'

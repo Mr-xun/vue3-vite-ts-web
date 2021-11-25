@@ -20,7 +20,7 @@ export default defineComponent({
         const num = computed(() => store.state.count)
         let result = ref({})
         const testApi = async () => {
-            result.value = await api.testApi()
+            result.value = await api.user_verify()
             console.log(result)
         }
         return {
