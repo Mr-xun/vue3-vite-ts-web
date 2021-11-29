@@ -1,6 +1,10 @@
 <template>
-    <div class="toggle flex-all-center" :class="{ 'is-active': !props.isActive }" @click="emit('toggle')">
-        <el-icon :size="20" color='#303133'>
+    <div
+        class="toggle flex-all-center"
+        :class="{ 'is-active': !props.isActive }"
+        @click="emits('toggle')"
+    >
+        <el-icon :size="20" color="#303133">
             <expand />
         </el-icon>
     </div>
@@ -13,7 +17,7 @@ interface IProps {
 const props = withDefaults(defineProps<IProps>(), {
     isActive: false
 })
-const emit = defineEmits<{ (e: 'toggle'): void }>()
+const emits = defineEmits<{ (e: 'toggle'): void }>()
 </script>
 <style lang="scss" scoped>
 .toggle {

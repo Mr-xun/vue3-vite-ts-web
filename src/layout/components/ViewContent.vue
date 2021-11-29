@@ -10,7 +10,4 @@
     </el-scrollbar>
 </template>
 <style lang="scss" scoped>
-.page-view {
-   
-}
 </style>

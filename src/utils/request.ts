@@ -83,7 +83,7 @@ service.interceptors.response.use((response: AxiosResponse) => {
         });
         return Promise.reject(new Error(res.msg || "Error"));
     } else {
-        return response
+        return res
     }
 }, ErrorHandle)
 

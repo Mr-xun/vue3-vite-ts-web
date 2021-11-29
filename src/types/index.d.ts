@@ -7,7 +7,19 @@ declare global {
         mozRequestAnimationFrame: boolean
     }
     interface parentNode {
-        scrollTop:number
+        scrollTop: number
+    }
+    interface ITableRender<T = any> {
+        loading: boolean,
+        data: Array<T>
+        total: number
+        page: number
+        limit: number
+    }
+    interface ITableQuery {
+        pageNum: number
+        pageSize: number,
+        [propName: string]: any;
     }
 }
 export { };
