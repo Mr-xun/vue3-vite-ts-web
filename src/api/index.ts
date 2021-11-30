@@ -17,4 +17,9 @@ export default {
         //用户列表
         return request.get('/user/list', { params });
     },
+
+    user_delete(deleteIds: string[]) {
+        //用户删除
+        return request.delete(`/user/delete/${deleteIds}`);
+    },
 }

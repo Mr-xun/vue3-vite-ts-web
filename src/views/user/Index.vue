@@ -12,6 +12,7 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" plain class="filter-item" @click="search">查询</el-button>
+                    <el-button type="primary" plain class="filter-item" @click="batchDelete">删除</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -72,19 +73,30 @@ const fetchData = async (table: ITableRender<ITableRenderData>, query: IQueryPar
     table.total = result.data.total;
 
 }
-//触发渲染
+//渲染操作
 const renderHandle = (table: ITableRender<ITableRenderData>, query: IQueryParams) => {
     onMounted(() => search())
+    //查询
     const search = () => {
         table.page = 1;
         fetchData(table, query)
     }
+    //批量删除
+    const batchDelete = async () => {
+        let result = await api.user_delete(['619c8bc861de99d52bac2931', '619c8bee61de99d52bac2933']);
+        if (result.code == 200) {
+            fetchData(table, query)
+        }
+    }
+    //分页
     const paginationChange = () => fetchData(table, query)
     return {
         search,
+        batchDelete,
         paginationChange
     }
 }
+
 export default defineComponent({
     name: 'User',
     components: { Pagination },
