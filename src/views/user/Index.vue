@@ -47,7 +47,7 @@
     </div>
 </template>
 <script lang="ts">
-import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { defineComponent, onMounted, reactive } from 'vue'
 import Pagination from "@/components/Pagination/index.vue"
 
 import api from '@/api'
@@ -75,7 +75,10 @@ const fetchData = async (table: ITableRender<ITableRenderData>, query: IQueryPar
 //触发渲染
 const renderHandle = (table: ITableRender<ITableRenderData>, query: IQueryParams) => {
     onMounted(() => search())
-    const search = () => fetchData(table, query)
+    const search = () => {
+        table.page = 1;
+        fetchData(table, query)
+    }
     const paginationChange = () => fetchData(table, query)
     return {
         search,

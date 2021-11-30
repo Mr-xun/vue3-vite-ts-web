@@ -27,8 +27,8 @@ const userModule: Module<IUserState, IRootState> = {
         async login({ commit }, params: ILoginForm) {
             try {
                 let { data } = await api.user_login(params)
-                commit('setToken',data.data.token)
-                commit('setUser',data.data.userInfo)
+                commit('setToken',data.token)
+                commit('setUser',data.userInfo)
                 return true
             } catch (error) {
                 console.log(error)
