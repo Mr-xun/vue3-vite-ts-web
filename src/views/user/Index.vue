@@ -22,7 +22,7 @@
                         </el-button>
                         <template #dropdown>
                             <el-dropdown-menu>
-                                <el-dropdown-item>新增用户</el-dropdown-item>
+                                <el-dropdown-item @click="add">新增用户</el-dropdown-item>
                                 <el-dropdown-item @click="batchDelete">批量删除</el-dropdown-item>
                             </el-dropdown-menu>
                         </template>
@@ -59,6 +59,9 @@
                     class-name="small-padding fixed-width"
                 >
                     <template v-slot:default="{ row }">
+                        <el-icon class="table-operation" color="#2db7f5" @click="edit(row)">
+                            <edit />
+                        </el-icon>
                         <el-icon class="table-operation" color="#f50" @click="singleDelete(row)">
                             <delete />
                         </el-icon>
@@ -72,28 +75,31 @@
                 v-model:limit="tableData.limit"
                 @pagination="paginationChange"
             />
+            <user-edit
+                ref="editRef"
+                :visible="dialog.visible"
+                :title="dialog.title"
+                @success="editSuccess"
+                @close="dialog.visible = false"
+            />
         </div>
     </div>
 </template>
 <script lang="ts">
 import api from '@/api'
-import { Delete, ArrowDown } from '@element-plus/icons'
+import { Delete, ArrowDown, Edit } from '@element-plus/icons'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import Pagination from "@/components/Pagination/index.vue"
-
+import UserEdit from "./Edit.vue"
 import { defineComponent, onMounted, reactive, ref, unref } from 'vue'
-
+import ITableRenderList from './interface'
 
 interface IQueryParams {
     username?: string
 }
-interface ITableRenderData {
-    username: string
-    _id?: string
-}
 
 //加载数据
-const fetchData = async (table: ITableRender<ITableRenderData>, query: IQueryParams) => {
+const fetchData = async (table: ITableRender<ITableRenderList>, query: IQueryParams) => {
     table.loading = true;
     let params: ITableQuery = {
         pageNum: table.page,
@@ -111,7 +117,7 @@ const clearSelections = (dom: any) => {
     unref(dom).clearSelection()
 }
 //页面操作
-const pageHandle = (table: ITableRender<ITableRenderData>, query: IQueryParams) => {
+const pageHandle = (table: ITableRender<ITableRenderList>, query: IQueryParams) => {
     const tableRef = ref<any>(null)
     onMounted(() => search())
     //查询
@@ -126,12 +132,12 @@ const pageHandle = (table: ITableRender<ITableRenderData>, query: IQueryParams) 
         fetchData(table, query)
     }
     //多选
-    const selectChange = (selection: ITableRenderData[]) => {
+    const selectChange = (selection: ITableRenderList[]) => {
         table.selection = selection
     }
 
     //单个删除table
-    const singleDelete = async (row: ITableRenderData) => {
+    const singleDelete = async (row: ITableRenderList) => {
         clearSelections(tableRef)
         unref(tableRef).toggleRowSelection(row, true)
         batchDelete()
@@ -183,14 +189,45 @@ const pageHandle = (table: ITableRender<ITableRenderData>, query: IQueryParams) 
     }
 }
 
+//新增修改
+const editHandle = (table: ITableRender<ITableRenderList>, query: IQueryParams) => {
+    const editRef = ref<any>(null)
+    const dialog = reactive<IEditDialog>({
+        visible: false,
+        title: '新增'
+    })
+    //新增
+    const add = () => {
+        console.log(editRef)
+        dialog.visible = true
+        dialog.title = '新增'
+    }
+
+    //编辑
+    const edit = (row: ITableRenderList) => {
+        dialog.visible = true
+        dialog.title = '编辑'
+        unref(editRef).setEditForm(row)
+        console.log(row, 'row')
+    }
+    const editSuccess = () => fetchData(table, query)
+    return {
+        add,
+        edit,
+        editRef,
+        dialog,
+        editSuccess,
+    }
+}
+
 export default defineComponent({
     name: 'User',
-    components: { Pagination, Delete, ArrowDown },
+    components: { Pagination, Delete, Edit, ArrowDown, UserEdit },
     setup() {
         const queryParams = reactive<IQueryParams>({
             username: ''
         })
-        const tableData = reactive<ITableRender<ITableRenderData>>({
+        const tableData = reactive<ITableRender<ITableRenderList>>({
             loading: false,
             data: [],
             selection: [],
@@ -202,7 +239,8 @@ export default defineComponent({
         return {
             queryParams,
             tableData,
-            ...pageHandle(tableData, queryParams)
+            ...pageHandle(tableData, queryParams),
+            ...editHandle(tableData, queryParams)
         }
     }
 })

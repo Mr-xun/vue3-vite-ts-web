@@ -37,5 +37,11 @@ declare global {
         pageSize: number,
         [propName: string]: any;
     }
+
+    //新增编辑弹窗
+    interface IEditDialog {
+        visible:boolean,
+        title?:string
+    }
 }
 export { };

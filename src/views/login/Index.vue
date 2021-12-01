@@ -2,7 +2,7 @@
     <div class="login-page">
         <div class="form-container">
             <el-form
-                ref="ruleForm"
+                ref="form"
                 :model="loginForm"
                 status-icon
                 :rules="rules"
@@ -62,9 +62,9 @@ export default defineComponent({
                 trigger: 'blur'
             }
         })
-        const ruleForm = ref<any>(null)
+        const form = ref<any>(null)
         const handleLogin = () => {
-            unref(ruleForm).validate(async (valid: boolean) => {
+            unref(form).validate(async (valid: boolean) => {
                 if (valid) {
                     let status = await store.dispatch('user/login', loginForm)
                     if (status) {
@@ -79,7 +79,7 @@ export default defineComponent({
         const resetPwd = () => { }
         return {
             loginLoading,
-            ruleForm,
+            form,
             loginForm,
             rules,
             handleLogin
