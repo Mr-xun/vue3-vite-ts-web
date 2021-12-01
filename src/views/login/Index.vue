@@ -35,6 +35,7 @@
 import { defineComponent, ref, unref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store/index'
+import { ElMessage } from 'element-plus'
 interface ILoginForm {
     username: string,
     password: string
@@ -66,7 +67,10 @@ export default defineComponent({
             unref(ruleForm).validate(async (valid: boolean) => {
                 if (valid) {
                     let status = await store.dispatch('user/login', loginForm)
-                    if (status) router.push({ path: '/home' })
+                    if (status) {
+                        router.push({ path: '/home' })
+                        ElMessage.success('登录成功')
+                    }
                 } else {
                     return false
                 }

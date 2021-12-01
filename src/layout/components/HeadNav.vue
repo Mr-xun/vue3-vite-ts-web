@@ -10,7 +10,7 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item>修改密码</el-dropdown-item>
-                        <el-dropdown-item divided>退出登录</el-dropdown-item>
+                        <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -19,17 +19,29 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from '@/store/index'
+import { ElMessage } from 'element-plus'
 import Toggle from "@/components/Toggle/index.vue"
 export default defineComponent({
     components: { Toggle },
     setup() {
         const store = useStore()
+        const router = useRouter()
         const sidebarCollapse = computed(() => store.state.setting.sidebarCollapse)
         const toggle = () => {
             store.commit('setting/toggleSidebar')
         }
-        return { sidebarCollapse, toggle }
+        //退出登录
+        const logout = async () => {
+            let status = await store.dispatch('user/logout')
+            if (status) {
+                router.push({ path: '/login' })
+                ElMessage.success('登出成功')
+            }
+
+        }
+        return { sidebarCollapse, toggle, logout }
     },
 })
 </script>

@@ -3,6 +3,12 @@ import { ElNotification } from 'element-plus'
 import db from '@/utils/localstorage'
 import router from '@/router'
 
+interface IResponse<T = any> {
+    code: number;
+    msg: string;
+    data: T;
+}
+
 const service = axios.create({
     withCredentials: true,
     baseURL: 'http://127.0.0.1:3000',
@@ -69,21 +75,21 @@ service.interceptors.request.use((config: AxiosRequestConfig) => {
     if (!config?.headers) {
         throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
     }
-    let token = db.get('TOEKN','');
+    let token = db.get('TOEKN', '');
     config.headers['Authorization'] = `Bearer ${token}`;
     return config
 }, ErrorHandle)
 
-service.interceptors.response.use((response: AxiosResponse) => {
-    const res = response.data;
-    if (res.code != 200) {
+service.interceptors.response.use((response: AxiosResponse<IResponse>) => {
+    const { data } = response;
+    if (data.code != 200) {
         ElNotification({
-            message: res.msg || "Error",
+            message: data.msg || "Error",
             type: "error",
         });
-        return Promise.reject(new Error(res.msg || "Error"));
+        return Promise.reject(new Error(data.msg || "Error"));
     } else {
-        return res
+        return data
     }
 }, ErrorHandle)
 
