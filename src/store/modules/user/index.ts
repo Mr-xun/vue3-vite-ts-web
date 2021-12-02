@@ -10,13 +10,13 @@ interface ILoginForm {
 const userModule: Module<IUserState, IRootState> = {
     namespaced: true,
     state: {
-        token: db.get('TOKEN'),
-        userInfo: null
+        token: db.get('TOKEN',null),
+        userInfo: db.get('USER_INFO',null)
     },
     mutations: {
         setToken(state, token: string): void {
             state.token = token
-            db.save('TOEKN', token)
+            db.save('TOKEN', token)
         },
         setUser(state, data: object): void {
             db.save('USER_INFO', data);

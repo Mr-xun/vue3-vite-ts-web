@@ -52,6 +52,33 @@
                     prop="username"
                 ></el-table-column>
                 <el-table-column
+                    label="头像"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="80px"
+                    prop="avatar"
+                >
+                    <template #default="{ row }">
+                        <el-avatar v-if="row.avatar" shape="square" :size="40" :src="row.avatar"></el-avatar>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    label="手机号"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="80px"
+                    prop="mobile"
+                ></el-table-column>
+                <el-table-column
+                    label="角色"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="80px"
+                    prop="role"
+                >
+                    <template #default="{ row }">{{ row.role == 1 ? '管理员' : "角色" }}</template>
+                </el-table-column>
+                <el-table-column
                     label="操作"
                     align="center"
                     min-width="150px"
@@ -92,7 +119,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import Pagination from "@/components/Pagination/index.vue"
 import UserEdit from "./Edit.vue"
 import { defineComponent, onMounted, reactive, ref, unref } from 'vue'
-import ITableRenderList from './interface'
+import { ITableRenderList } from '@/types/user'
 
 interface IQueryParams {
     username?: string

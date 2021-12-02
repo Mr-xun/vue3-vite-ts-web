@@ -10,10 +10,10 @@
                 class="login-form"
             >
                 <el-form-item label="用户名" prop="username">
-                    <el-input v-model="loginForm.username" autocomplete="off"></el-input>
+                    <el-input v-model="loginForm.username"></el-input>
                 </el-form-item>
                 <el-form-item label="密码" prop="password">
-                    <el-input v-model="loginForm.password" type="password" autocomplete="off"></el-input>
+                    <el-input v-model="loginForm.password" type="password" show-password></el-input>
                 </el-form-item>
             </el-form>
             <!-- <div class="login-tip">
@@ -36,10 +36,8 @@ import { defineComponent, ref, unref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from '@/store/index'
 import { ElMessage } from 'element-plus'
-interface ILoginForm {
-    username: string,
-    password: string
-}
+import { ILoginForm } from '@/types/login';
+
 export default defineComponent({
     name: 'Login',
     setup() {

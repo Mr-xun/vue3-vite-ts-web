@@ -75,7 +75,7 @@ service.interceptors.request.use((config: AxiosRequestConfig) => {
     if (!config?.headers) {
         throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
     }
-    let token = db.get('TOEKN', '');
+    let token = db.get('TOKEN', '');
     config.headers['Authorization'] = `Bearer ${token}`;
     return config
 }, ErrorHandle)

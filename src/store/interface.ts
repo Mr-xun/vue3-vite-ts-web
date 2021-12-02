@@ -1,5 +1,6 @@
 import TSettingState from "./modules/setting/interface"
-import pageTagsState from "./modules/pageTags/interface"
+import TPageTagsState from "./modules/pageTags/interface"
+import TUserState from "./modules/user/interface"
 
 export default interface IRootState {
     count: number,
@@ -7,5 +8,6 @@ export default interface IRootState {
 }
 export interface IAllState extends IRootState {
     setting: TSettingState,
-    pageTags: pageTagsState
+    pageTags: TPageTagsState,
+    user:TUserState
 }
