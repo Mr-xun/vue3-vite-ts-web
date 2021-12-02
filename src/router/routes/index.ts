@@ -28,15 +28,15 @@ export const routes: Array<RouterConfig> = [
             name: 'Home1',
             component: () => import('@/views/Home.vue'),
             meta: {
-                title: '首页1'
+                title: '首页子集1'
             }
         }, {
             path: '/home2',
             name: 'Home2',
             component: () => import('@/views/Home.vue'),
             meta: {
-            icon: 'el-icon-files',
-                title: '首页2'
+                icon: 'el-icon-files',
+                title: '首页子集2'
             }
         }]
     },
@@ -57,84 +57,84 @@ export const routes: Array<RouterConfig> = [
             meta: {
                 title: '一号档案'
             }
-        },{
+        }, {
             path: '/basic/goods2',
             name: 'BasicGoods2',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '二号档案'
             }
-        },{
+        }, {
             path: '/basic/goods3',
             name: 'BasicGoods3',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '三号档案'
             }
-        },{
+        }, {
             path: '/basic/goods4',
             name: 'BasicGoods4',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '四号档案'
             }
-        },{
+        }, {
             path: '/basic/goods5',
             name: 'BasicGoods5',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '五号档案'
             }
-        },{
+        }, {
             path: '/basic/goods6',
             name: 'BasicGoods6',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '六号档案'
             }
-        },{
+        }, {
             path: '/basic/goods7',
             name: 'BasicGoods7',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '七号档案'
             }
-        },{
+        }, {
             path: '/basic/goods8',
             name: 'BasicGoods8',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '八号档案'
             }
-        },{
+        }, {
             path: '/basic/goods9',
             name: 'BasicGoods9',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '九号档案'
             }
-        },{
+        }, {
             path: '/basic/goods10',
             name: 'BasicGoods10',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '十号档案'
             }
-        },{
+        }, {
             path: '/basic/goods11',
             name: 'BasicGoods11',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '十一号档案'
             }
-        },{
+        }, {
             path: '/basic/goods12',
             name: 'BasicGoods12',
             component: () => import('@/views/basic/goods/Index.vue'),
             meta: {
                 title: '十二号档案'
             }
-        },{
+        }, {
             path: '/basic/goods13',
             name: 'BasicGoods13',
             component: () => import('@/views/basic/goods/Index.vue'),
@@ -149,7 +149,7 @@ export const routes: Array<RouterConfig> = [
         component: Layout,
         redirect: '/user/index',
         meta: {
-            icon: 'el-icon-files',
+            icon: 'el-icon-user',
             title: '用户管理'
         },
         children: [{
@@ -167,8 +167,7 @@ export const routes: Array<RouterConfig> = [
         component: Layout,
         redirect: '/about/me',
         meta: {
-            icon: 'el-icon-files',
-            title: '关于'
+            icon: 'el-icon-postcard',
         },
         children: [{
             path: '/about/me',

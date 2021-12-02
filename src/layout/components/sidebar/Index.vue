@@ -6,7 +6,7 @@
             :collapse="sidebarCollapse"
             router
         >
-            <sidebar-item v-for="(route) in menuRoutes" :key="route.path" :route="route" />
+            <sidebar-item v-for="(route) in menuRoutes" :key="route.path" :route="route" :base-path="route.path"  />
         </el-menu>
     </el-scrollbar>
 </template>
@@ -21,23 +21,19 @@ export default defineComponent({
     setup() {
         const route = useRoute()
         const store = useStore()
-        const menuRoutes = computed(() => routes)
+        const menuRoutes = computed(() => routes.filter(route=>!route.meta?.hidde))
         const activeMenu = computed(() => {
             if (route.meta.activeMenu) {
                 return route.meta.activeMenu
             }
-            console.log(route.path,'route.path')
             return route.path
         })
         const sidebarCollapse = computed(() => store.state.setting.sidebarCollapse)
-        const changeRadio = ()=>{
-            store.commit('setting/toggleSidebar')
-        }
+        
         return {
             sidebarCollapse,
             menuRoutes,
             activeMenu,
-            changeRadio
         }
     }
 })

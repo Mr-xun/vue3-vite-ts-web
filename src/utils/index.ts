@@ -13,11 +13,11 @@ export const encrypt = (word: any, keyStr: any) => {
     return encrypted.toString();
 };
 /**
-     * @description 解密
-     * @param  {string} word   解密字符
-     * @param  {string} keyStr key
-     * @return {string}        解密后字符
-     */
+ * @description 解密
+ * @param  {string} word   解密字符
+ * @param  {string} keyStr key
+ * @return {string}        解密后字符
+ */
 export const decrypt = (word: any, keyStr: any) => {
     keyStr = keyStr ? keyStr : 'abcdefgabcdefg12';
     var key = enc.Utf8.parse(keyStr); //Latin1 w8m31+Yy/Nw6thPsMpO5fg==
@@ -46,3 +46,13 @@ export const getCookie = (name: string | number) => {
 export const delCookie = (name: any) => {
     setCookie(name, '', -1);
 };
+
+
+/**
+ * @description 是否为有效路径
+ * @param {string} path
+ * @returns {Boolean}
+ */
+export const isExternal = (path: string) => {
+    return /^(https?:|mailto:|tel:)/.test(path);
+}

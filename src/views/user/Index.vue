@@ -59,7 +59,7 @@
                     prop="avatar"
                 >
                     <template #default="{ row }">
-                        <el-avatar v-if="row.avatar" shape="square" :size="40" :src="row.avatar"></el-avatar>
+                        <el-avatar v-if="row.avatar"  :size="40" :src="row.avatar"></el-avatar>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -225,7 +225,6 @@ const editHandle = (table: ITableRender<ITableRenderList>, query: IQueryParams) 
     })
     //新增
     const add = () => {
-        console.log(editRef)
         dialog.visible = true
         dialog.title = '新增'
     }
@@ -235,7 +234,6 @@ const editHandle = (table: ITableRender<ITableRenderList>, query: IQueryParams) 
         dialog.visible = true
         dialog.title = '编辑'
         unref(editRef).setEditForm(row)
-        console.log(row, 'row')
     }
     const editSuccess = () => fetchData(table, query)
     return {

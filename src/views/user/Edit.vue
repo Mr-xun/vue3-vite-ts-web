@@ -1,7 +1,7 @@
 <template>
     <el-dialog
         v-model="isVisible"
-        title="新增"
+        :title="title"
         :width="width"
         top="50px"
         :close-on-click-modal="false"
@@ -131,7 +131,6 @@ const imageUplpad = (editForm: Ref<ISubmitForm>) => {
     }
     const uploadSuccess = (res: IResponse) => {
         editForm.value.avatar = res.data.url;
-
     }
     const uploadBefore = (file: File) => {
         const isJPG = file.type === 'image/jpeg'
@@ -212,7 +211,6 @@ export default defineComponent({
                     url: val.avatar,
                 }]
             }
-
         }
         //提交
         const submit = () => {

@@ -9,6 +9,9 @@ export default defineConfig({
     Components({
         resolvers: [ElementPlusResolver()],
     })],
+    define: {
+        'process.env': {}
+    },
     resolve: {
         alias: {
             '@': resolve('src')
