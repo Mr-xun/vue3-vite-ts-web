@@ -4,7 +4,7 @@ export interface ITableRenderList {
     username: string,
     mobile: string,
     role?: number | null,
-    _id?: string
+    user_id?: string
 }
 export interface ISubmitForm extends ITableRenderList {
     password: string

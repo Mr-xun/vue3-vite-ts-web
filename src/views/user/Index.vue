@@ -43,7 +43,13 @@
                 @selection-change="selectChange"
             >
                 <el-table-column type="selection" align="center" width="40px" />
-                <el-table-column label="序号" type="index" width="50" align="center"></el-table-column>
+                <el-table-column
+                    label="用户ID"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="80px"
+                    prop="user_id"
+                ></el-table-column>
                 <el-table-column
                     label="用户名"
                     :show-overflow-tooltip="true"
@@ -76,8 +82,22 @@
                     min-width="80px"
                     prop="role"
                 >
-                    <template #default="{ row }">{{ row.role == 1 ? '管理员' : "角色" }}</template>
+                    <template #default="{ row }">{{ row.role == 1 ? '管理员' : "普通用户" }}</template>
                 </el-table-column>
+                <el-table-column
+                    label="创建时间"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="160px"
+                    prop="create_time"
+                ></el-table-column>
+                <el-table-column
+                    label="更新时间"
+                    :show-overflow-tooltip="true"
+                    align="center"
+                    min-width="160px"
+                    prop="update_time"
+                ></el-table-column>
                 <el-table-column
                     label="操作"
                     align="center"
@@ -187,7 +207,7 @@ const pageHandle = (table: ITableRender<ITableRenderList>, query: IQueryParams) 
             .then(async () => {
                 const deleteIds: any[] = [];
                 table.selection?.forEach(u => {
-                    deleteIds.push(u._id)
+                    deleteIds.push(u.user_id)
                 })
                 sureDelete(deleteIds)
             })

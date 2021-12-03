@@ -18,7 +18,7 @@
             <el-form-item label="用户名" prop="username">
                 <el-input v-model="editForm.username" :style="{ width: itemWidth }" clearable></el-input>
             </el-form-item>
-            <el-form-item label="密码" prop="password" v-if="!editForm._id">
+            <el-form-item label="密码" prop="password" v-if="!editForm.user_id">
                 <el-tooltip
                     class="item"
                     effect="dark"
@@ -216,7 +216,7 @@ export default defineComponent({
         const submit = () => {
             unref(form).validate(async (valid: boolean) => {
                 if (valid) {
-                    if (unref(editForm)._id) {
+                    if (unref(editForm).user_id) {
                         await api.user_update(unref(editForm))
                     } else {
                         await api.user_register(unref(editForm))
